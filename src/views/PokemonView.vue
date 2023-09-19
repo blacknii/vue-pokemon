@@ -20,7 +20,7 @@ import { defineComponent, ref } from 'vue'
 import Character from '../types/Character'
 
 export default defineComponent({
-  name: 'HomeView',
+  name: 'PokemonView',
   components: {},
   setup() {
     const grating = ref('hello')
@@ -37,4 +37,3 @@ export default defineComponent({
   }
 })
 </script>
-../types/Character
