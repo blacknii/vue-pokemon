@@ -1,39 +1,28 @@
 <template>
   <main>
-    <h1>{{ grating }} - {{ number }}</h1>
-    <p v-for="character in characters" :key="character.name">{{ character.name }}</p>
-
-    <div class="q-pa-md q-gutter-sm">
-      <q-avatar color="red" text-color="white" icon="directions" />
-      <q-avatar color="primary" text-color="white">J</q-avatar>
-      <q-avatar size="100px" font-size="52px" color="teal" text-color="white" icon="directions" />
-      <q-avatar size="24px" color="orange">J</q-avatar>
-      <q-avatar>
-        <img src="https://cdn.quasar.dev/img/avatar.png" />
-      </q-avatar>
-    </div>
+    <p v-for="pokemon in pokemons" :key="pokemon.name">{{ pokemon.name }}</p>
   </main>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import Character from '../types/Character'
+import getPokemons from '@/composables/getPokemons'
 
 export default defineComponent({
   name: 'PokemonView',
   components: {},
   setup() {
-    const grating = ref('hello')
-    const number = ref<number | string>(3)
-    grating.value = 'hi'
-    number.value = '100'
+    const pokemons = ref(null)
+    onMounted(async () => {
+      const response = await getPokemons()
+      if (response !== null) {
+        pokemons.value = response
+        console.log(pokemons.value)
+      }
+    })
 
-    const characters = ref<Character[]>([
-      { name: 'Jan', surname: 'Kawasaki', age: 10 },
-      { name: 'Lorem', surname: 'Ipsum', age: 21 },
-      { name: 'Lorem2', surname: 'Ipsum 2', age: 31 }
-    ])
-    return { grating, number, characters }
+    return { pokemons }
   }
 })
 </script>
