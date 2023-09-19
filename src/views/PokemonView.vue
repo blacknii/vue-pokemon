@@ -1,8 +1,7 @@
 <template>
-  <main>
-    <p v-for="pokemon in pokemons" :key="pokemon.name">{{ pokemon.name }}</p>
-    <Cart :pokemon="pokemon" />
-  </main>
+  <div class="q-pa-md row items-start q-gutter-md" style="justify-content: center">
+    <p v-for="pokemon in pokemons" :key="pokemon.name"><Cart :pokemon="pokemon" /></p>
+  </div>
 </template>
 
 <script lang="ts">

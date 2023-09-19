@@ -1,10 +1,14 @@
 <template>
   <q-card class="my-card" @click="redirectToProfile">
-    <img src="https://thronesapi.com/assets/images/daenerys.jpg" />
+    <img :src="pokemon.sprites.other.home.front_default" />
 
     <q-card-section>
-      <div class="text-h6">Daenerys Targaryen</div>
-      <div class="text-subtitle2">House Targaryen</div>
+      <div class="text-h6">{{ pokemon.name }}</div>
+      <div class="text-subtitle2">
+        <q-chip v-for="type in pokemon.types">
+          {{ type.type.name }}
+        </q-chip>
+      </div>
     </q-card-section>
 
     <q-card-section class="q-pt-none">
@@ -17,19 +21,19 @@
 import { useRouter } from 'vue-router'
 
 export default {
-  props: ['id', 'character'],
+  props: ['pokemon'],
 
-  setup({ id }) {
+  setup({ pokemon }) {
     const router = useRouter()
 
     const lorem =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 
     const redirectToProfile = () => {
-      console.log('profile', id)
+      console.log('single-pokemon', pokemon.id)
       router.push({
-        name: 'profile',
-        params: { id: id }
+        name: 'single-pokemon',
+        params: { id: pokemon.id }
       })
     }
 
