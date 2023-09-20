@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
-import Character from '../types/Character'
+import Pokemon from '../types/Pokemon'
 import getPokemons from '@/composables/getPokemons'
 import Cart from '@/components/Cart.vue'
 
@@ -27,3 +27,4 @@ export default defineComponent({
   }
 })
 </script>
+../types/Pokemon

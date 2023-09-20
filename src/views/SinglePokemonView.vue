@@ -1,11 +1,23 @@
 <template>
-  <p>single pokemon id: {{ id }}</p>
-  <p>Pokemon name {{ character.name }}</p>
+  <div v-if="pokemon">
+    <img :src="pokemon.sprite" :alt="pokemon.name" />
+    <p>Pokemon id {{ pokemon.id }}</p>
+    <p>Pokemon name {{ pokemon.name }}</p>
+    <p>Pokemon height {{ pokemon.height }}</p>
+    <p>Pokemon weight {{ pokemon.weight }}</p>
+    <p>
+      Pokemon types
+      <q-chip v-for="type in pokemon.types">
+        {{ type }}
+      </q-chip>
+    </p>
+    <p>Pokemon sprite {{ pokemon.sprite }}</p>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
-import Character from '../types/Character'
+import Pokemon from '../types/Pokemon'
 import getPokemon from '@/Composables/getPokemon.ts'
 
 export default defineComponent({
@@ -13,17 +25,18 @@ export default defineComponent({
   props: ['id'],
   components: {},
   setup({ id }) {
-    const character = ref('')
+    const pokemon = ref<Pokemon | null>(null)
 
     onMounted(async () => {
       const response = await getPokemon(id)
       if (response !== null) {
-        character.value = response
+        pokemon.value = response
+        console.log(response)
       }
     })
 
     return {
-      character
+      pokemon
     }
   }
 })
