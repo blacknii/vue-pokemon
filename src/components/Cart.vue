@@ -1,12 +1,12 @@
 <template>
   <q-card class="my-card" @click="redirectToProfile">
-    <img :src="pokemon.sprites.other.home.front_default" />
+    <img :src="pokemon.sprite" />
 
     <q-card-section>
       <div class="text-h6">{{ pokemon.name }}</div>
       <div class="text-subtitle2">
         <q-chip v-for="type in pokemon.types">
-          {{ type.type.name }}
+          {{ type }}
         </q-chip>
       </div>
     </q-card-section>
@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { useRouter } from 'vue-router'
+import Pokemon from '../types/Pokemon'
 
 export default {
   props: ['pokemon'],

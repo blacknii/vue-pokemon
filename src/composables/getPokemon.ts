@@ -6,7 +6,7 @@ const getPokemon = async (id: string) => {
     const pokemon = {
       id: response.data.id,
       name: response.data.name,
-      types: response.data.types.map((elem) => elem.type.name),
+      types: response.data.types.map((elem: any) => elem.type.name),
       weight: response.data.weight,
       height: response.data.height,
       sprite: response.data.sprites.other.home.front_default
