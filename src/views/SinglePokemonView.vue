@@ -55,14 +55,13 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 1.5rem;
   margin: 0 auto;
-  max-width: 70rem;
   padding: 1rem;
 }
 
 .details {
   /* background-color: aqua; */
   margin: 5rem 0 0 2rem;
-  width: 15rem;
 }
 </style>
