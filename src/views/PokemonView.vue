@@ -7,13 +7,21 @@
     <div
       class="q-pa-md row items-start q-gutter-md pokemon-container"
       style="justify-content: center"
+      v-if="pokemons"
     >
       <Cart v-for="pokemon in pokemons" :key="pokemon.name" :pokemon="pokemon" />
+    </div>
+    <div
+      class="q-pa-md row items-start q-gutter-md pokemon-container"
+      style="justify-content: center"
+      v-else
+    >
+      <p>LOADING..</p>
     </div>
     <q-pagination
       v-model="currentPage"
       color="black"
-      :max="100"
+      :max="60"
       :max-pages="6"
       :boundary-numbers="false"
     />
@@ -21,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref, onMounted, watch } from 'vue'
 import Pokemon from '../types/Pokemon'
 import getPokemons from '@/composables/getPokemons'
 import Cart from '@/components/Cart.vue'
@@ -31,15 +39,22 @@ export default defineComponent({
   components: { Cart },
   setup() {
     const pokemons = ref<Pokemon[] | null>(null)
+    const currentPage = ref(1)
     onMounted(async () => {
-      const response = await getPokemons()
+      const response = await getPokemons(currentPage.value)
       if (response !== null) {
         pokemons.value = response
         console.log(pokemons.value)
       }
     })
 
-    const currentPage = ref(1)
+    watch(currentPage, async () => {
+      const response = await getPokemons(currentPage.value)
+      if (response !== null) {
+        pokemons.value = response
+        console.log(pokemons.value)
+      }
+    })
 
     return { pokemons, currentPage }
   }
