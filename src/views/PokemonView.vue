@@ -1,10 +1,22 @@
 <template>
   <div
     class="q-pa-md row items-start q-gutter-md pokemon-container"
-    style="justify-content: center"
+    style="justify-content: center; padding-bottom: 1.5rem"
   >
-    <p v-for="pokemon in pokemons" :key="pokemon.name"><Cart :pokemon="pokemon" /></p>
-    <!-- <p v-for="pokemon in pokemons" :key="pokemon.name">{{ pokemon.name }}</p> -->
+    <h1 :style="{ fontWeight: 500, color: '#3c2100', margin: 0 }">POKEDEX</h1>
+    <div
+      class="q-pa-md row items-start q-gutter-md pokemon-container"
+      style="justify-content: center"
+    >
+      <Cart v-for="pokemon in pokemons" :key="pokemon.name" :pokemon="pokemon" />
+    </div>
+    <q-pagination
+      v-model="currentPage"
+      color="black"
+      :max="100"
+      :max-pages="6"
+      :boundary-numbers="false"
+    />
   </div>
 </template>
 
@@ -27,7 +39,9 @@ export default defineComponent({
       }
     })
 
-    return { pokemons }
+    const currentPage = ref(1)
+
+    return { pokemons, currentPage }
   }
 })
 </script>
