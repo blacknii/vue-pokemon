@@ -3,25 +3,27 @@
     <img :src="pokemon.sprite" />
 
     <q-card-section>
-      <div class="text-h6">{{ pokemon.name }}</div>
+      <div class="title-and-heart-button">
+        <div class="text-h6">{{ pokemon.name }}</div>
+        <q-rating
+          v-model="ratingModel"
+          max="1"
+          size="2rem"
+          color="red"
+          color-selected="red-9"
+          icon="favorite_border"
+          icon-selected="favorite"
+          icon-half="favorite"
+          no-dimming
+          @click.stop="console.log('test')"
+        />
+      </div>
       <div class="text-subtitle2">
         <q-chip v-for="type in pokemon.types">
           {{ type }}
         </q-chip>
       </div>
     </q-card-section>
-    <q-rating
-      v-model="ratingModel"
-      max="1"
-      size="2rem"
-      color="red"
-      color-selected="red-9"
-      icon="favorite_border"
-      icon-selected="favorite"
-      icon-half="favorite"
-      no-dimming
-      @click.stop="console.log('test')"
-    />
 
     <q-card-section class="q-pt-none">
       {{ lorem }}
@@ -32,7 +34,7 @@
 <script lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import likedPokemons from '../data/db.ts'
+import { likedPokemons } from '../data/db.ts'
 import Pokemon from '../types/Pokemon'
 
 export default {
@@ -73,4 +75,8 @@ img
   height: 250px
   object-fit: cover
   object-position: top
+
+.title-and-heart-button
+  display: flex
+  justify-content: space-between
 </style>
