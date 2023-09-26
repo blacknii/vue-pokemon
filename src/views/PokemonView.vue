@@ -1,5 +1,8 @@
 <template>
-  <div class="q-pa-md row items-start q-gutter-md" style="justify-content: center">
+  <div
+    class="q-pa-md row items-start q-gutter-md pokemon-container"
+    style="justify-content: center"
+  >
     <p v-for="pokemon in pokemons" :key="pokemon.name"><Cart :pokemon="pokemon" /></p>
     <!-- <p v-for="pokemon in pokemons" :key="pokemon.name">{{ pokemon.name }}</p> -->
   </div>
@@ -28,4 +31,11 @@ export default defineComponent({
   }
 })
 </script>
-../types/Pokemon
+
+<style scoped>
+.pokemon-container {
+  max-width: 90rem;
+  margin: 0 auto;
+  background-color: bisque;
+}
+</style>

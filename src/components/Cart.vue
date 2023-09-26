@@ -10,6 +10,17 @@
         </q-chip>
       </div>
     </q-card-section>
+    <q-rating
+      v-model="model3"
+      max="1"
+      size="2rem"
+      color="red"
+      color-selected="red-9"
+      icon="favorite_border"
+      icon-selected="favorite"
+      icon-half="favorite"
+      no-dimming
+    />
 
     <q-card-section class="q-pt-none">
       {{ lorem }}
