@@ -7,9 +7,7 @@
       <p><strong>weight</strong>: {{ pokemon.weight }}</p>
       <p>
         <strong>types</strong>
-        <q-chip v-for="type in pokemon.types">
-          {{ type }}
-        </q-chip>
+        <Pill v-for="type in pokemon.types" :type="type" />
       </p>
       <p><strong>sprite</strong>: <a :href="pokemon.sprite">PokeAPI</a></p>
       <RouterLink to="/">
@@ -23,13 +21,14 @@
 <script lang="ts">
 import { RouterLink } from 'vue-router'
 import { defineComponent, ref, onMounted } from 'vue'
+import Pill from '../components/Pill.vue'
 import Pokemon from '../types/Pokemon'
 import getPokemon from '@/Composables/getPokemon.ts'
 
 export default defineComponent({
   name: 'SinglePokemonView',
   props: ['id'],
-  components: {},
+  components: { Pill },
   setup({ id }) {
     const pokemon = ref<Pokemon | null>(null)
 

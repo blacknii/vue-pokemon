@@ -19,9 +19,7 @@
         />
       </div>
       <div class="text-subtitle2">
-        <q-chip v-for="type in pokemon.types">
-          {{ type }}
-        </q-chip>
+        <Pill v-for="type in pokemon.types" :type="type" :key="type" />
       </div>
     </q-card-section>
 
@@ -35,13 +33,17 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { likedPokemons } from '../data/db.ts'
+import Pill from '../components/Pill.vue'
 import Pokemon from '../types/Pokemon'
 
 export default {
   props: ['pokemon'],
+  components: { Pill },
 
   setup({ pokemon }) {
     const router = useRouter()
+
+    console.log(pokemon.types)
 
     const ratingModel = ref(likedPokemons.includes(pokemon.id) ? 1 : 0)
 
