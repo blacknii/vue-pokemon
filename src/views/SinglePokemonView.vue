@@ -1,17 +1,17 @@
 <template>
-  <div v-if="pokemon">
+  <div class="single-pokemon-container" v-if="pokemon">
     <img :src="pokemon.sprite" :alt="pokemon.name" />
-    <p>Pokemon id {{ pokemon.id }}</p>
-    <p>Pokemon name {{ pokemon.name }}</p>
-    <p>Pokemon height {{ pokemon.height }}</p>
-    <p>Pokemon weight {{ pokemon.weight }}</p>
+    <p><strong>id</strong>: {{ pokemon.id }}</p>
+    <p><strong>name</strong>: {{ pokemon.name }}</p>
+    <p><strong>height</strong>: {{ pokemon.height }}</p>
+    <p><strong>weight</strong>: {{ pokemon.weight }}</p>
     <p>
-      Pokemon types
+      <strong>types</strong>
       <q-chip v-for="type in pokemon.types">
         {{ type }}
       </q-chip>
     </p>
-    <p>Pokemon sprite {{ pokemon.sprite }}</p>
+    <p><strong>sprite</strong> {{ pokemon.sprite }}</p>
     <RouterLink to="/">
       <q-btn push color="primary" label="BACK" />
     </RouterLink>
@@ -45,3 +45,12 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+.single-pokemon-container {
+  background-color: rgba(107, 64, 64, 0.342);
+  margin: 0 auto;
+  max-width: 70rem;
+  padding: 1rem;
+}
+</style>
