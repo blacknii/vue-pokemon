@@ -11,7 +11,7 @@
       </div>
     </q-card-section>
     <q-rating
-      v-model="model3"
+      v-model="ratingModel"
       max="1"
       size="2rem"
       color="red"
@@ -20,6 +20,7 @@
       icon-selected="favorite"
       icon-half="favorite"
       no-dimming
+      @click.stop="console.log('test')"
     />
 
     <q-card-section class="q-pt-none">
@@ -29,7 +30,9 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import likedPokemons from '../data/db.ts'
 import Pokemon from '../types/Pokemon'
 
 export default {
@@ -37,6 +40,8 @@ export default {
 
   setup({ pokemon }) {
     const router = useRouter()
+
+    const ratingModel = ref(likedPokemons.includes(pokemon.id) ? 1 : 0)
 
     const lorem =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
@@ -51,7 +56,8 @@ export default {
 
     return {
       lorem,
-      redirectToProfile
+      redirectToProfile,
+      ratingModel
     }
   }
 }
