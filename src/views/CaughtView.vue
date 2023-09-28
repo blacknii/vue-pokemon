@@ -40,7 +40,7 @@ export default defineComponent({
       }
     })
 
-    watch(currentPage, async () => {
+    watch(pokemons, async () => {
       const response = await getCaughtPokemon()
       if (response !== null) {
         pokemons.value = response
