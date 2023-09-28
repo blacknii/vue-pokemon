@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Pokemon from '../views/PokemonView.vue'
+import Liked from '../views/LikedView.vue'
+import Caught from '../views/CaughtView.vue'
 import SinglePokemon from '../views/SinglePokemonView.vue'
 
 const router = createRouter({
@@ -15,6 +17,16 @@ const router = createRouter({
       name: 'single-pokemon',
       component: SinglePokemon,
       props: true
+    },
+    {
+      path: '/liked',
+      name: 'liked',
+      component: Liked
+    },
+    {
+      path: '/caught',
+      name: 'caught',
+      component: Caught
     }
   ]
 })
