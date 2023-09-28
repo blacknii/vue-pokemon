@@ -1,5 +1,7 @@
 const likedPokemons = [2, 4, 5, 7, 335, 73, 2]
 
+const caughtPokemons = [1, 4, 66, 54]
+
 const pokemonTypesColors = [
   {
     name: 'normal',
@@ -103,4 +105,4 @@ const pokemonTypesColors = [
   }
 ]
 
-export { likedPokemons, pokemonTypesColors }
+export { likedPokemons, caughtPokemons, pokemonTypesColors }

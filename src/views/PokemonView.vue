@@ -32,7 +32,7 @@
 import { defineComponent, ref, onMounted, watch } from 'vue'
 import Pokemon from '../types/Pokemon'
 import getPokemons from '@/composables/getPokemons'
-import Cart from '@/components/Cart.vue'
+import Cart from '@/components/CartComponent.vue'
 
 export default defineComponent({
   name: 'PokemonView',
@@ -44,7 +44,6 @@ export default defineComponent({
       const response = await getPokemons(currentPage.value)
       if (response !== null) {
         pokemons.value = response
-        console.log(pokemons.value)
       }
     })
 
@@ -52,7 +51,6 @@ export default defineComponent({
       const response = await getPokemons(currentPage.value)
       if (response !== null) {
         pokemons.value = response
-        console.log(pokemons.value)
       }
     })
 

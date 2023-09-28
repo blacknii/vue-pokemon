@@ -11,11 +11,7 @@ export default {
   props: ['type'],
   setup({ type }, ctx) {
     const color = ref(pokemonTypesColors.find((typeData) => typeData.name === type))
-    console.log(
-      pokemonTypesColors,
-      type,
-      pokemonTypesColors.find((typeData) => typeData.name === type)
-    )
+
     return { color }
   }
 }

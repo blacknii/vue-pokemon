@@ -6,8 +6,8 @@
       <div class="title-and-buttons">
         <div class="text-h6">{{ pokemon.name }}</div>
         <div class="buttons">
-          <HeartButton :id="pokemon.id" />
           <CatchButton :id="pokemon.id" />
+          <HeartButton :id="pokemon.id" />
         </div>
       </div>
       <div class="text-subtitle2">
@@ -22,13 +22,10 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { likedPokemons } from '../data/db.ts'
 import Pill from '../components/Pill.vue'
 import HeartButton from '../components/HeartButton.vue'
 import CatchButton from '../components/CatchButton.vue'
-import Pokemon from '../types/Pokemon'
 
 export default {
   props: ['pokemon'],
@@ -37,13 +34,10 @@ export default {
   setup({ pokemon }) {
     const router = useRouter()
 
-    console.log(pokemon.types)
-
     const lorem =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.'
 
     const redirectToProfile = () => {
-      console.log('single-pokemon', pokemon.id)
       router.push({
         name: 'single-pokemon',
         params: { id: pokemon.id }

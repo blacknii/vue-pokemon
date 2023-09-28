@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const getPokemons = async (index) => {
+const getPokemons = async (index: number) => {
   const offset = (index - 1) * 20
   const limit = 20
   try {

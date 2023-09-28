@@ -36,7 +36,6 @@ export default defineComponent({
       const response = await getPokemon(id)
       if (response !== null) {
         pokemon.value = response
-        console.log(response)
       }
     })
 

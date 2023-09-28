@@ -3,8 +3,8 @@
     v-model="ratingModel"
     max="1"
     size="2rem"
-    color="red"
-    color-selected="red-9"
+    color="grey"
+    color-selected="red"
     icon="favorite_border"
     icon-selected="favorite"
     icon-half="favorite"
@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { ref } from 'vue'
-import { likedPokemons } from '../data/db.ts'
+import { likedPokemons } from '../data/db'
 
 export default {
   props: ['id'],
