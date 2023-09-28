@@ -3,7 +3,7 @@
     class="q-pa-md row items-start q-gutter-md pokemon-container"
     style="justify-content: center; padding-bottom: 1.5rem"
   >
-    <h1 :style="{ fontWeight: 500, color: '#3c2100', margin: 0 }">LikedView.vue</h1>
+    <h1 :style="{ fontWeight: 500, color: '#3c2100', margin: 0 }">LIKED POKEMONS</h1>
     <div
       class="q-pa-md row items-start q-gutter-md pokemon-container"
       style="justify-content: center"
@@ -18,20 +18,13 @@
     >
       <p>LOADING..</p>
     </div>
-    <q-pagination
-      v-model="currentPage"
-      color="black"
-      :max="60"
-      :max-pages="6"
-      :boundary-numbers="false"
-    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, watch } from 'vue'
 import Pokemon from '../types/Pokemon'
-import getPokemons from '@/composables/getPokemons'
+import getLikedPokemon from '@/composables/getLikedPokemon'
 import Cart from '@/components/CartComponent.vue'
 
 export default defineComponent({
@@ -41,14 +34,14 @@ export default defineComponent({
     const pokemons = ref<Pokemon[] | null>(null)
     const currentPage = ref(1)
     onMounted(async () => {
-      const response = await getPokemons(currentPage.value)
+      const response = await getLikedPokemon()
       if (response !== null) {
         pokemons.value = response
       }
     })
 
     watch(currentPage, async () => {
-      const response = await getPokemons(currentPage.value)
+      const response = await getLikedPokemon()
       if (response !== null) {
         pokemons.value = response
       }

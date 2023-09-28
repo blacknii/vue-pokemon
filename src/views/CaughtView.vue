@@ -3,7 +3,7 @@
     class="q-pa-md row items-start q-gutter-md pokemon-container"
     style="justify-content: center; padding-bottom: 1.5rem"
   >
-    <h1 :style="{ fontWeight: 500, color: '#3c2100', margin: 0 }">CaughtView.vue</h1>
+    <h1 :style="{ fontWeight: 500, color: '#3c2100', margin: 0 }">CAUGHT POKEMONS</h1>
     <div
       class="q-pa-md row items-start q-gutter-md pokemon-container"
       style="justify-content: center"
@@ -18,13 +18,6 @@
     >
       <p>LOADING..</p>
     </div>
-    <q-pagination
-      v-model="currentPage"
-      color="black"
-      :max="60"
-      :max-pages="6"
-      :boundary-numbers="false"
-    />
   </div>
 </template>
 

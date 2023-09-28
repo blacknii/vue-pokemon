@@ -1,21 +1,29 @@
 import axios from 'axios'
+import { likedPokemons } from '../data/db'
 
-const getPokemon = async (id: string) => {
+const getPokemons = async () => {
   try {
-    const response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + id)
-    const pokemon = {
-      id: response.data.id,
-      name: response.data.name,
-      types: response.data.types.map((elem: any) => elem.type.name),
-      weight: response.data.weight,
-      height: response.data.height,
-      sprite: response.data.sprites.other.home.front_default
-    }
-    return pokemon
+    const pokemonDataPromises = likedPokemons.map(async (id) => {
+      const pokemonResponse = await axios.get('https://pokeapi.co/api/v2/pokemon/' + id)
+      return pokemonResponse.data
+    })
+    const pokemonsRaw = await Promise.all(pokemonDataPromises)
+    const pokemons = pokemonsRaw.map((response) => {
+      return {
+        id: response.id,
+        name: response.name,
+        types: response.types.map((elem: any) => elem.type.name),
+        weight: response.weight,
+        height: response.height,
+        sprite: response.sprites.other.home.front_default
+      }
+    })
+
+    return pokemons
   } catch (error) {
-    console.error('Error fetching character data:', error)
+    console.error('Error fetching characters data:', error)
     return null
   }
 }
 
-export default getPokemon
+export default getPokemons

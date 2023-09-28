@@ -3,11 +3,8 @@ import { caughtPokemons } from '../data/db'
 
 const getPokemons = async () => {
   try {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=5&limit=20`)
-    const pokemonDataPromises = response.data.results.map(async (pokemon) => {
-      console.log({ pokemon })
-
-      const pokemonResponse = await axios.get(pokemon.url)
+    const pokemonDataPromises = caughtPokemons.map(async (id) => {
+      const pokemonResponse = await axios.get('https://pokeapi.co/api/v2/pokemon/' + id)
       return pokemonResponse.data
     })
     const pokemonsRaw = await Promise.all(pokemonDataPromises)
