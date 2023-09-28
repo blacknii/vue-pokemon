@@ -13,13 +13,20 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { caughtPokemons } from '../data/db'
 
 export default {
   props: ['id'],
   setup({ id }) {
     const ratingModel = ref(caughtPokemons.includes(id) ? 1 : 0)
+    watch(ratingModel, () => {
+      if (ratingModel.value === 1) {
+        console.log('yes')
+      } else if (ratingModel.value === 0) {
+        console.log('no')
+      }
+    })
     return {
       ratingModel
     }
