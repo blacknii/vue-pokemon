@@ -15,6 +15,8 @@
 <script lang="ts">
 import { ref, watch } from 'vue'
 import { caughtPokemons } from '../data/db'
+import addCaughtPokemon from '../composables/catch-count/addCaughtPokemon'
+import removeCaughtPokemon from '../composables/catch-count/removeCaughtPokemon'
 
 export default {
   props: ['id'],
@@ -22,9 +24,9 @@ export default {
     const ratingModel = ref(caughtPokemons.includes(id) ? 1 : 0)
     watch(ratingModel, () => {
       if (ratingModel.value === 1) {
-        console.log('yes')
+        addCaughtPokemon(id)
       } else if (ratingModel.value === 0) {
-        console.log('no')
+        removeCaughtPokemon(id)
       }
     })
     return {

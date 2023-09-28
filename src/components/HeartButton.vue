@@ -14,13 +14,22 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { likedPokemons } from '../data/db'
+import addLikedPokemon from '../composables/likes/addLikedPokemon'
+import removeLikedPokemon from '../composables/likes/removeLikedPokemon'
 
 export default {
   props: ['id'],
   setup({ id }) {
     const ratingModel = ref(likedPokemons.includes(id) ? 1 : 0)
+    watch(ratingModel, () => {
+      if (ratingModel.value === 1) {
+        addLikedPokemon(id)
+      } else if (ratingModel.value === 0) {
+        removeLikedPokemon(id)
+      }
+    })
     return {
       ratingModel
     }

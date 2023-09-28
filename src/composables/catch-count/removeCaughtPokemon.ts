@@ -1,4 +1,4 @@
-const removeCaughtPokemon = async (id: string) => {
+const removeCaughtPokemon = (id: string) => {
   console.log(`Pokemon ${id} removed from caught`)
 }
 

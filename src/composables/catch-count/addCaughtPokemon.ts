@@ -1,4 +1,5 @@
-const addCaughtPokemon = async (id: string) => {
+const addCaughtPokemon = (id: string) => {
+  localStorage.setItem('CaughtPokemon', id)
   console.log(`Pokemon ${id} added to caught`)
 }
 

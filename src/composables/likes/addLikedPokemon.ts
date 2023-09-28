@@ -1,4 +1,4 @@
-const addLikedPokemon = async (id: string) => {
+const addLikedPokemon = (id: string) => {
   console.log(`Pokemon ${id} added`)
 }
 
