@@ -1,6 +1,12 @@
 const addCaughtPokemon = (id: string) => {
-  localStorage.setItem('CaughtPokemon', id)
-  console.log(`Pokemon ${id} added to caught`)
+  const CaughtPokemonArray = localStorage.getItem('CaughtPokemon')
+  if (CaughtPokemonArray === null) {
+    localStorage.setItem('CaughtPokemon', JSON.stringify([id]))
+  } else if (CaughtPokemonArray !== null) {
+    localStorage.setItem('CaughtPokemon', JSON.stringify([...JSON.parse(CaughtPokemonArray), id]))
+  }
+
+  console.log(`Pokemon ${id} added to caught`, CaughtPokemonArray)
 }
 
 export default addCaughtPokemon
