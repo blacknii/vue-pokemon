@@ -1,6 +1,14 @@
-const likedPokemons = [2, 4, 5, 7, 335, 73, 2]
+let likedPokemons: string[] = []
+const LikedPokemonArray = localStorage.getItem('LikedPokemon')
+if (LikedPokemonArray !== null) {
+  likedPokemons = JSON.parse(LikedPokemonArray)
+}
 
-const caughtPokemons = [1, 4, 66, 54]
+let caughtPokemons: string[] = []
+const CaughtPokemonArray = localStorage.getItem('CaughtPokemon')
+if (CaughtPokemonArray !== null) {
+  caughtPokemons = JSON.parse(CaughtPokemonArray)
+}
 
 const pokemonTypesColors = [
   {
