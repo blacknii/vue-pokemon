@@ -3,20 +3,12 @@
     <img :src="pokemon.sprite" />
 
     <q-card-section>
-      <div class="title-and-heart-button">
+      <div class="title-and-buttons">
         <div class="text-h6">{{ pokemon.name }}</div>
-        <q-rating
-          v-model="ratingModel"
-          max="1"
-          size="2rem"
-          color="red"
-          color-selected="red-9"
-          icon="favorite_border"
-          icon-selected="favorite"
-          icon-half="favorite"
-          no-dimming
-          @click.stop="console.log('test')"
-        />
+        <div class="buttons">
+          <HeartButton :id="pokemon.id" />
+          <CatchButton :id="pokemon.id" />
+        </div>
       </div>
       <div class="text-subtitle2">
         <Pill v-for="type in pokemon.types" :type="type" :key="type" />
@@ -34,18 +26,18 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { likedPokemons } from '../data/db.ts'
 import Pill from '../components/Pill.vue'
+import HeartButton from '../components/HeartButton.vue'
+import CatchButton from '../components/CatchButton.vue'
 import Pokemon from '../types/Pokemon'
 
 export default {
   props: ['pokemon'],
-  components: { Pill },
+  components: { Pill, HeartButton, CatchButton },
 
   setup({ pokemon }) {
     const router = useRouter()
 
     console.log(pokemon.types)
-
-    const ratingModel = ref(likedPokemons.includes(pokemon.id) ? 1 : 0)
 
     const lorem =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
@@ -60,8 +52,7 @@ export default {
 
     return {
       lorem,
-      redirectToProfile,
-      ratingModel
+      redirectToProfile
     }
   }
 }
@@ -78,7 +69,12 @@ img
   object-fit: cover
   object-position: top
 
-.title-and-heart-button
+
+.title-and-buttons
   display: flex
   justify-content: space-between
+
+.buttons
+  display: flex
+  gap: 0.5rem
 </style>
