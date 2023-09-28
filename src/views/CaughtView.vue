@@ -31,7 +31,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted, watch } from 'vue'
 import Pokemon from '../types/Pokemon'
-import getPokemons from '@/composables/getPokemons'
+import getCaughtPokemon from '@/composables/getCaughtPokemon'
 import Cart from '@/components/CartComponent.vue'
 
 export default defineComponent({
@@ -41,14 +41,14 @@ export default defineComponent({
     const pokemons = ref<Pokemon[] | null>(null)
     const currentPage = ref(1)
     onMounted(async () => {
-      const response = await getPokemons(currentPage.value)
+      const response = await getCaughtPokemon()
       if (response !== null) {
         pokemons.value = response
       }
     })
 
     watch(currentPage, async () => {
-      const response = await getPokemons(currentPage.value)
+      const response = await getCaughtPokemon()
       if (response !== null) {
         pokemons.value = response
       }
