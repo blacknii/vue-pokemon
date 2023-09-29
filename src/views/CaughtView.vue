@@ -3,7 +3,7 @@
     class="q-pa-md row items-start q-gutter-md pokemon-container"
     style="justify-content: center; padding-bottom: 1.5rem"
   >
-    <h1 :style="{ fontWeight: 500, color: '#3c2100', margin: 0 }">CAUGHT POKEMONS</h1>
+    <h1 :style="{ fontWeight: 500, color: '#3c2100', margin: 0 }">Caught POKEMONS</h1>
     <div
       class="q-pa-md row items-start q-gutter-md pokemon-container"
       style="justify-content: center"
@@ -26,22 +26,24 @@ import { defineComponent, ref, onMounted, watch } from 'vue'
 import Pokemon from '../types/Pokemon'
 import getCaughtPokemon from '@/composables/getCaughtPokemon'
 import Cart from '@/components/CartComponent.vue'
+import { useCounterStore } from '../stores/counter'
 
 export default defineComponent({
   name: 'PokemonView',
   components: { Cart },
   setup() {
+    const counterStore = useCounterStore()
     const pokemons = ref<Pokemon[] | null>(null)
     const currentPage = ref(1)
     onMounted(async () => {
-      const response = await getCaughtPokemon()
+      const response = await getCaughtPokemon(counterStore.caughtPokemons)
       if (response !== null) {
         pokemons.value = response
       }
     })
 
-    watch(pokemons, async () => {
-      const response = await getCaughtPokemon()
+    watch(counterStore.caughtPokemons, async () => {
+      const response = await getCaughtPokemon(counterStore.caughtPokemons)
       if (response !== null) {
         pokemons.value = response
       }

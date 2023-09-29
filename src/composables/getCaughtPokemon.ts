@@ -1,7 +1,6 @@
 import axios from 'axios'
-import { caughtPokemons } from '../data/db'
 
-const getPokemons = async () => {
+const getPokemons = async (caughtPokemons) => {
   try {
     const pokemonDataPromises = caughtPokemons.map(async (id) => {
       const pokemonResponse = await axios.get('https://pokeapi.co/api/v2/pokemon/' + id)
