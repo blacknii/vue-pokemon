@@ -10,6 +10,8 @@
         <Pill v-for="type in pokemon.types" :type="type" />
       </p>
       <p><strong>sprite</strong>: <a :href="pokemon.sprite">PokeAPI</a></p>
+      <div><CatchButton :id="pokemon.id" /> <HeartButton :id="pokemon.id" /></div>
+      <br />
       <RouterLink to="/">
         <q-btn push color="primary" label="BACK" />
       </RouterLink>
@@ -24,11 +26,13 @@ import { defineComponent, ref, onMounted } from 'vue'
 import Pill from '../components/Pill.vue'
 import Pokemon from '../types/Pokemon'
 import getPokemon from '@/Composables/getPokemon.ts'
+import HeartButton from '../components/HeartButton.vue'
+import CatchButton from '../components/CatchButton.vue'
 
 export default defineComponent({
   name: 'SinglePokemonView',
   props: ['id'],
-  components: { Pill },
+  components: { Pill, HeartButton, CatchButton },
   setup({ id }) {
     const pokemon = ref<Pokemon | null>(null)
 
