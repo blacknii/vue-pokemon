@@ -1,12 +1,17 @@
 <template>
-  <RouterView />
-  <h1>Liked Pokemons: {{ counterStore.likedPokemons }}</h1>
-  <button @click="addPokemonLike">Increment Counter</button>
-  <h1>Cough Pokemons: {{ counterStore.caughtPokemons }}</h1>
-  <button @click="addPokemonCath">Increment Counter</button>
+  <div class="container">
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/caught">Caught</router-link>
+      <router-link to="/liked">Liked</router-link>
+      <router-link :to="'/pokemon/' + random">Random Pokemon</router-link>
+    </nav>
+    <RouterView />
+  </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import { useCounterStore } from './stores/counter'
 
@@ -18,68 +23,23 @@ const addPokemonLike = () => {
 const addPokemonCath = () => {
   counterStore.addCaughtPokemonTwo(20)
 }
+
+const random = ref(Math.floor(Math.random() * 800) + 1)
 </script>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100rem;
+  margin: 0 auto;
 }
 
 nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+  display: flex;
+  gap: 1rem;
+  font-size: 2rem;
+  padding: 1rem;
 }
 </style>
