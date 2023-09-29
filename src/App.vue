@@ -1,9 +1,9 @@
 <template>
   <RouterView />
-  <h1>Counter: {{ counterStore.count }}</h1>
-  <button @click="incrementCounter">Increment Counter</button>
   <h1>Liked Pokemons: {{ counterStore.likedPokemons }}</h1>
-  <button @click="addPokemon">Increment Counter</button>
+  <button @click="addPokemonLike">Increment Counter</button>
+  <h1>Cough Pokemons: {{ counterStore.caughtPokemons }}</h1>
+  <button @click="addPokemonCath">Increment Counter</button>
 </template>
 
 <script setup lang="ts">
@@ -12,12 +12,11 @@ import { useCounterStore } from './stores/counter'
 
 const counterStore = useCounterStore()
 
-function incrementCounter() {
-  counterStore.increment()
+const addPokemonLike = () => {
+  counterStore.addLikedPokemonTwo(3)
 }
-
-const addPokemon = () => {
-  counterStore.addLikedPokemon(3)
+const addPokemonCath = () => {
+  counterStore.addCaughtPokemonTwo(30)
 }
 </script>
 
