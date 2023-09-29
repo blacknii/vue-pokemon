@@ -16,18 +16,19 @@
 <script lang="ts">
 import { ref, watch } from 'vue'
 import { likedPokemons } from '../data/db'
-import addLikedPokemon from '../composables/likes/addLikedPokemon'
-import removeLikedPokemon from '../composables/likes/removeLikedPokemon'
+import { useCounterStore } from '../stores/counter'
 
 export default {
   props: ['id'],
   setup({ id }) {
+    const counterStore = useCounterStore()
+
     const ratingModel = ref(likedPokemons.includes(id) ? 1 : 0)
     watch(ratingModel, () => {
       if (ratingModel.value === 1) {
-        addLikedPokemon(id)
+        counterStore.addLikedPokemonTwo(id)
       } else if (ratingModel.value === 0) {
-        removeLikedPokemon(id)
+        counterStore.removeLikedPokemonTwo(id)
       }
     })
     return {

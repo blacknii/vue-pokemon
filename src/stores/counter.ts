@@ -24,7 +24,7 @@ export const useCounterStore = defineStore('counter', () => {
   }
   const removeLikedPokemonTwo = (id: number) => {
     removeLikedPokemon(id)
-    likedPokemons.value.filter((pokemon) => pokemon !== id)
+    likedPokemons.value = likedPokemons.value.filter((pokemon) => pokemon !== id)
   }
 
   const addCaughtPokemonTwo = (id: number) => {
@@ -33,13 +33,11 @@ export const useCounterStore = defineStore('counter', () => {
   }
 
   const removeCaughtPokemonTwo = (id: number) => {
-    removeCaughtPokemon(id)
-    caughtPokemons.value.filter((pokemon) => pokemon !== id)
+    caughtPokemons.value = caughtPokemons.value.filter((pokemon) => pokemon !== id)
   }
 
   return {
     likedPokemons,
-    addLikedPokemon,
     caughtPokemons,
     addLikedPokemonTwo,
     removeLikedPokemonTwo,

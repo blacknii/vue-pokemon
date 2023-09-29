@@ -16,7 +16,7 @@ const addPokemonLike = () => {
   counterStore.addLikedPokemonTwo(3)
 }
 const addPokemonCath = () => {
-  counterStore.addCaughtPokemonTwo(30)
+  counterStore.addCaughtPokemonTwo(20)
 }
 </script>
 
