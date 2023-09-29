@@ -1,9 +1,24 @@
 <template>
   <RouterView />
+  <h1>Counter: {{ counterStore.count }}</h1>
+  <button @click="incrementCounter">Increment Counter</button>
+  <h1>Liked Pokemons: {{ counterStore.likedPokemons }}</h1>
+  <button @click="addPokemon">Increment Counter</button>
 </template>
 
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { useCounterStore } from './stores/counter'
+
+const counterStore = useCounterStore()
+
+function incrementCounter() {
+  counterStore.increment()
+}
+
+const addPokemon = () => {
+  counterStore.addLikedPokemon(3)
+}
 </script>
 
 <style scoped>
