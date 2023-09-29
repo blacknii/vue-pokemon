@@ -33,6 +33,7 @@ export const useCounterStore = defineStore('counter', () => {
   }
 
   const removeCaughtPokemonTwo = (id: number) => {
+    removeCaughtPokemon(id)
     caughtPokemons.value = caughtPokemons.value.filter((pokemon) => pokemon !== id)
   }
 

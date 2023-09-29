@@ -14,7 +14,6 @@
 
 <script lang="ts">
 import { ref, watch } from 'vue'
-import { caughtPokemons } from '../data/db'
 import { useCounterStore } from '../stores/counter'
 
 export default {
@@ -22,7 +21,8 @@ export default {
   setup({ id }) {
     const counterStore = useCounterStore()
 
-    const ratingModel = ref(caughtPokemons.includes(id) ? 1 : 0)
+    const ratingModel = ref(counterStore.caughtPokemons.includes(id) ? 1 : 0)
+
     watch(ratingModel, () => {
       if (ratingModel.value === 1) {
         counterStore.addCaughtPokemonTwo(id)
@@ -30,9 +30,7 @@ export default {
         counterStore.removeCaughtPokemonTwo(id)
       }
     })
-    return {
-      ratingModel
-    }
+    return { ratingModel }
   }
 }
 </script>

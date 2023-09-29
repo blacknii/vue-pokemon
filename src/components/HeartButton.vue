@@ -15,7 +15,6 @@
 
 <script lang="ts">
 import { ref, watch } from 'vue'
-import { likedPokemons } from '../data/db'
 import { useCounterStore } from '../stores/counter'
 
 export default {
@@ -23,7 +22,7 @@ export default {
   setup({ id }) {
     const counterStore = useCounterStore()
 
-    const ratingModel = ref(likedPokemons.includes(id) ? 1 : 0)
+    const ratingModel = ref(counterStore.likedPokemons.includes(id) ? 1 : 0)
     watch(ratingModel, () => {
       if (ratingModel.value === 1) {
         counterStore.addLikedPokemonTwo(id)
