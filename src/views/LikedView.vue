@@ -26,22 +26,24 @@ import { defineComponent, ref, onMounted, watch } from 'vue'
 import Pokemon from '../types/Pokemon'
 import getLikedPokemon from '@/composables/getLikedPokemon'
 import Cart from '@/components/CartComponent.vue'
+import { useCounterStore } from '../stores/counter'
 
 export default defineComponent({
   name: 'PokemonView',
   components: { Cart },
   setup() {
+    const counterStore = useCounterStore()
     const pokemons = ref<Pokemon[] | null>(null)
     const currentPage = ref(1)
     onMounted(async () => {
-      const response = await getLikedPokemon()
+      const response = await getLikedPokemon(counterStore.likedPokemons)
       if (response !== null) {
         pokemons.value = response
       }
     })
 
-    watch(currentPage, async () => {
-      const response = await getLikedPokemon()
+    watch(counterStore.likedPokemons, async () => {
+      const response = await getLikedPokemon(counterStore.likedPokemons)
       if (response !== null) {
         pokemons.value = response
       }
