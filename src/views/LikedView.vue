@@ -41,12 +41,15 @@ export default defineComponent({
         pokemons.value = response
       }
     })
+    console.log(counterStore.likedPokemons)
 
     watch(counterStore.likedPokemons, async () => {
       const response = await getLikedPokemon(counterStore.likedPokemons)
       if (response !== null) {
         pokemons.value = response
       }
+      console.log(counterStore.likedPokemons)
+      console.log('test')
     })
 
     return { pokemons, currentPage }

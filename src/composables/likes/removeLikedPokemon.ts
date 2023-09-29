@@ -8,8 +8,6 @@ const removeLikedPokemon = (id: string) => {
       JSON.stringify(JSON.parse(LikedPokemonArray).filter((pokemonId: string) => pokemonId !== id))
     )
   }
-
-  console.log(`Pokemon ${id} removed from liked`, LikedPokemonArray)
 }
 
 export default removeLikedPokemon

@@ -22,7 +22,8 @@ export default {
   setup({ id }) {
     const counterStore = useCounterStore()
 
-    const ratingModel = ref(counterStore.likedPokemons.includes(id) ? 1 : 0)
+    let ratingModel = ref(counterStore.likedPokemons.includes(id) ? 1 : 0)
+
     watch(ratingModel, () => {
       if (ratingModel.value === 1) {
         counterStore.addLikedPokemonTwo(id)
@@ -30,6 +31,7 @@ export default {
         counterStore.removeLikedPokemonTwo(id)
       }
     })
+
     return {
       ratingModel
     }

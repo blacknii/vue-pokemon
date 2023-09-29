@@ -5,8 +5,6 @@ const addLikedPokemon = (id: string) => {
   } else if (LikedPokemonArray !== null) {
     localStorage.setItem('LikedPokemon', JSON.stringify([...JSON.parse(LikedPokemonArray), id]))
   }
-
-  console.log(`Pokemon ${id} added to liked`, LikedPokemonArray)
 }
 
 export default addLikedPokemon
