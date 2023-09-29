@@ -1,6 +1,6 @@
 <template>
   <q-card class="my-card" @click="redirectToProfile">
-    <img :src="pokemon.sprite" />
+    <img :src="pokemon.sprite" :class="{ 'black-and-white': ratingModel }" />
 
     <q-card-section>
       <div class="title-and-buttons">
@@ -22,16 +22,28 @@
 </template>
 
 <script lang="ts">
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Pill from '../components/Pill.vue'
 import HeartButton from '../components/HeartButton.vue'
 import CatchButton from '../components/CatchButton.vue'
+import { useCounterStore } from '../stores/counter'
 
 export default {
   props: ['pokemon'],
   components: { Pill, HeartButton, CatchButton },
 
   setup({ pokemon }) {
+    const counterStore = useCounterStore()
+
+    const ratingModel = ref(!counterStore.caughtPokemons.includes(pokemon.id))
+
+    watch(counterStore.caughtPokemons, () => {
+      ratingModel.value = !counterStore.caughtPokemons.includes(pokemon.id)
+      console.log(counterStore.likedPokemons)
+      console.log('test')
+    })
+
     const router = useRouter()
 
     const lorem =
@@ -46,7 +58,8 @@ export default {
 
     return {
       lorem,
-      redirectToProfile
+      redirectToProfile,
+      ratingModel
     }
   }
 }
@@ -63,6 +76,8 @@ img
   object-fit: cover
   object-position: top
 
+.black-and-white
+  filter: grayscale(100%)
 
 .title-and-buttons
   display: flex
